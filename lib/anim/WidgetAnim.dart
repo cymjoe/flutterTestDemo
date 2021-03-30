@@ -38,8 +38,15 @@ class _MyHomePageState extends State<MyHomePage> {
             shadowColor: _visible ? Colors.red : Colors.blue,
             duration: Duration(milliseconds: 500),
             child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: _visible
+                    ? BorderRadius.circular(10)
+                    : BorderRadius.circular(100),
+              ),
               width: _visible ? 200 : 200,
               height: _visible ? 200 : 200,
+
             ),
           ),
         ),
@@ -50,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           tooltip: "Toggle Opacity",
-          child: Icon(Icons.flip),
+          child: Icon(_visible ?Icons.toggle_on_sharp:Icons.toggle_off_sharp),
         ),
       ),
     );
