@@ -3,8 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_test/constant/Constant.dart';
+import 'package:flutter_app_test/ios/IosBottomSheet.dart';
+import 'package:flutter_app_test/ios/IosDialog.dart';
+import 'package:flutter_app_test/ios/IosFullDialog.dart';
+import 'package:flutter_app_test/ios/IosLongPressDialog.dart';
 import 'package:flutter_app_test/route/RoutePath.dart';
 import 'package:flutter_app_test/route/RouteUtils.dart';
+
+import 'bottom/BottomBar.dart';
 
 void main() {
   runApp(MyApp());
@@ -70,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _list.add(title2);
     _list.add(title3);
     _list.add(title4);
-    // _list.add(title5);
+    _list.add(title5);
   }
 
   void _addItem(String s) {
@@ -92,13 +98,15 @@ class _MyHomePageState extends State<MyHomePage> {
       child: GestureDetector(
         onTap: () {
           if (_item == title1) {
-            RouteUtils.launch(context, ios_bottom_sheet);
+            RouteUtils.launch(context, IosBottomSheet());
           } else if (_item == title2) {
-            RouteUtils.launch(context, ios_dialog);
+            RouteUtils.launch(context, IosDialog());
           } else if (_item == title3) {
-            RouteUtils.launch(context, ios_long_press_dialog);
+            RouteUtils.launch(context, IosLongPressDialog());
           } else if (_item == title4) {
-            RouteUtils.launch(context, ios_full_dialog);
+            RouteUtils.launch(context, IosFullDialog());
+          } else if (_item == title5) {
+            RouteUtils.launch(context, BottomBar());
           }
         },
         child: Card(

@@ -9,7 +9,7 @@ class IosFullDialog extends StatefulWidget {
 class _IosFullDialogState extends State<IosFullDialog>
     with SingleTickerProviderStateMixin {
   AnimationController _animationController;
-  bool show = false;
+  bool show = true;
 
   @override
   void initState() {
@@ -18,6 +18,9 @@ class _IosFullDialogState extends State<IosFullDialog>
       duration: Duration(milliseconds: 500),
     );
     super.initState();
+    setState(() {
+      show=true;
+    });
   }
 
   @override
@@ -41,12 +44,13 @@ class _IosFullDialogState extends State<IosFullDialog>
                   ),
                 ),
               ),
-              Offstage(offstage: show,
+              Offstage(
+                offstage: !show,
                 child: CupertinoActivityIndicator(
-
+                  radius: 20,
+                  animating: show,
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -57,6 +61,7 @@ class _IosFullDialogState extends State<IosFullDialog>
                           show = !show;
                         });
                       }),
+                  // ignore: deprecated_member_use
                   RaisedButton(
                     onPressed: () => _animationController.forward(),
                     child: Text('Forward'),
