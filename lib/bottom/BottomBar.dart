@@ -11,7 +11,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
   Animation<double> animation2;
   AnimationController controller;
   AnimationController controller2;
-  double maxHeight = 200.0;
+  double maxHeight = 800.0;
   double minHeight = 80.0;
 
   @override
@@ -78,30 +78,14 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                 height: height,
                 child: Container(
                   color: Colors.blue,
-                  child: GridView(
-                    padding: EdgeInsets.only(top: 0),
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      childAspectRatio: 1.0,
-                    ),
-                    children: [
-                      Icon(Icons.ac_unit),
-                      Icon(Icons.airport_shuttle),
-                      Icon(Icons.all_inclusive),
-                      Icon(Icons.beach_access),
-                      Icon(Icons.cake),
-                      Icon(Icons.free_breakfast),
-                      Icon(Icons.ac_unit),
-                      Icon(Icons.airport_shuttle),
-                      Icon(Icons.all_inclusive),
-                      Icon(Icons.beach_access),
-                      Icon(Icons.cake),
-                      Icon(Icons.free_breakfast),
-                      Icon(Icons.ac_unit),
-                      Icon(Icons.airport_shuttle),
-                      Icon(Icons.all_inclusive),
-                      Icon(Icons.beach_access),
+                  child: CustomScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    slivers: [
+                      SliverGrid(
+                        delegate: _mySliverChildBuilderDelegate(),
+                        gridDelegate:
+                            _mySliverGridDelegateWithFixedCrossAxisCount(),
+                      )
                     ],
                   ),
                 ),
@@ -112,4 +96,34 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
       ),
     );
   }
+}
+
+_mySliverChildBuilderDelegate() {
+  return SliverChildBuilderDelegate(
+    (BuildContext context, int index) {
+      return Container(
+        height: 50,
+        color: Colors.primaries[index % 8],
+      );
+    },
+    childCount: 20,
+  );
+}
+
+_mySliverGridDelegateWithFixedCrossAxisCount() {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2,
+    mainAxisSpacing: 10,
+    crossAxisSpacing: 5,
+    childAspectRatio: 1.5,
+  );
+}
+
+_mySliverGridDelegateWithMaxCrossAxisExtent() {
+  return SliverGridDelegateWithMaxCrossAxisExtent(
+    maxCrossAxisExtent: 200,
+    mainAxisSpacing: 10,
+    crossAxisSpacing: 5,
+    childAspectRatio: 1,
+  );
 }
