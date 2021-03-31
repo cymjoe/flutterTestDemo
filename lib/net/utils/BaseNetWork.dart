@@ -50,4 +50,17 @@ class BaseNetWork {
       onError(resp);
     }
   }
+
+  static get<T>(String url, Function(T map) onSuccess,
+      Function(BaseResp error) onError) async {
+    var response = await BaseNetWork.instance.dio.get(Constants.BASE_URL + url);
+    String body = response.toString();
+    BaseResp resp = baseRespFromJson(body);
+    if (resp.code == Constants.OK) {
+      Map data = new Map<String, dynamic>.from(resp.data);
+      onSuccess(JsonConvert.fromJsonAsT<T>(data));
+    } else {
+      onError(resp);
+    }
+  }
 }
