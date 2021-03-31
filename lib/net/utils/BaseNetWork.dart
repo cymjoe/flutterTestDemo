@@ -35,7 +35,7 @@ class BaseNetWork {
     return _instance;
   }
 
-//user/verifyVerificationCode
+//post请求
   static post<T>(String url, data, Function(T map) onSuccess,
       Function(BaseResp error) onError) async {
     var response = await BaseNetWork.instance.dio
@@ -50,9 +50,11 @@ class BaseNetWork {
     }
   }
 
-  static get<T>(String url, Function(T map) onSuccess,
-      Function(BaseResp error) onError) async {
-    var response = await BaseNetWork.instance.dio.get(Constants.BASE_URL + url);
+  //get请求
+  static get<T>(String url, Map<String, dynamic> queryParameters,
+      Function(T map) onSuccess, Function(BaseResp error) onError) async {
+    var response = await BaseNetWork.instance.dio
+        .get(Constants.BASE_URL + url, queryParameters: queryParameters);
     String body = response.toString();
     BaseResp resp = baseRespFromJson(body);
     if (resp.code == Constants.OK) {
