@@ -9,7 +9,8 @@ class AuthInterceptor extends Interceptor {
     super.onRequest(options, handler);
   }
 }
-class HttpLog extends Interceptor{
+
+class HttpLog extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     print("\n ---------Start Http Request---------");
@@ -22,7 +23,8 @@ class HttpLog extends Interceptor{
     print("---------End Http Request---------");
     super.onRequest(options, handler);
   }
-@override
+
+  @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     // TODO: implement onResponse
     super.onResponse(response, handler);
@@ -32,7 +34,7 @@ class HttpLog extends Interceptor{
     print("Response_StatusCode:${response.statusCode}");
     print("Response_StatusMessage:${response.statusMessage}");
     print("Response_Headers:${response.headers.toString()}");
+    print("Response_Body:\n${response.toString()}");
     print("---------End Http Response---------");
   }
-
 }

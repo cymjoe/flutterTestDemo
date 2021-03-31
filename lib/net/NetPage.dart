@@ -20,7 +20,7 @@ class _NetPageState extends State<NetPage> {
   bool success = false;
 
   _login() {
-    BaseNetWork.post<SmsResponseEntity>("sms-file/sms", {
+    BaseNetWork.post<SmsResponseEntity>("sms-file", {
       'phoneNumber': "+86-18581971202",
       'clientEnum': "PHONE",
       'smsTemplateEnum': "USER_LOGIN"
