@@ -3,17 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app_test/anim/WidgetAnim.dart';
-
+import 'package:flutter_app_test/bottom/BottomBar.dart';
 
 import 'package:flutter_app_test/constant/Constant.dart';
 import 'package:flutter_app_test/ios/IosBottomSheet.dart';
 import 'package:flutter_app_test/ios/IosDialog.dart';
 import 'package:flutter_app_test/ios/IosFullDialog.dart';
 import 'package:flutter_app_test/ios/IosLongPressDialog.dart';
+import 'package:flutter_app_test/net/NetPage.dart';
 import 'package:flutter_app_test/route/RoutePath.dart';
 import 'package:flutter_app_test/route/RouteUtils.dart';
 
-import 'bottom/BottomBar.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -81,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _list.add(title4);
     _list.add(title5);
     _list.add(title6);
+    _list.add(title7);
   }
 
   void _addItem(String s) {
@@ -113,6 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
             RouteUtils.launch(context, BottomBar());
           } else if (_item == title6) {
             RouteUtils.launch(context, WidgetAnim());
+          } else if (_item == title7) {
+            RouteUtils.launch(context, NetPage());
           }
         },
         child: Card(
