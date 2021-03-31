@@ -7,7 +7,6 @@ import 'package:flutter_app_test/net/utils/ErrorInterceptor.dart';
 import 'entity/BaseResp.dart';
 
 class BaseNetWork {
-  // 工厂模式
   factory BaseNetWork() => _getInstance();
 
   static BaseNetWork get instance => _getInstance();
