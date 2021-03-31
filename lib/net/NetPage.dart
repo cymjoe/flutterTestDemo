@@ -45,7 +45,7 @@ class _NetPageState extends State<NetPage> {
             onPressed: () {
               _login();
             },
-            child: Text('sendPhone'),
+            child: Text(success ? '请求成功' : 'sendPhone'),
           ),
         ),
       ),
